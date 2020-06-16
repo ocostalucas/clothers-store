@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:virtual_store/datas/product_data.dart';
+import 'package:virtual_store/screens/product_screen.dart';
 
 class ProductTile extends StatelessWidget {
   final String type;
@@ -11,6 +12,9 @@ class ProductTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context)=>ProductScreen(product))
+        );
       },
       child: Card(
         child: type == "grid"
