@@ -15,7 +15,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passController = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,7 +65,22 @@ class _LoginScreenState extends State<LoginScreen> {
                 Align(
                   alignment: Alignment.centerRight,
                   child: FlatButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      if (_emailController.text.isEmpty)
+                        _scaffoldKey.currentState.showSnackBar(SnackBar(
+                          content: Text("Insira seu e-mail!"),
+                          backgroundColor: Colors.redAccent,
+                          duration: Duration(seconds: 2),
+                        ));
+                      else{
+                        model.recoverPass(_emailController.text);
+                        _scaffoldKey.currentState.showSnackBar(SnackBar(
+                          content: Text("Confira seu seu e-mail!"),
+                          backgroundColor: Theme.of(context).primaryColor,
+                          duration: Duration(seconds: 2),
+                        ));
+                      }
+                    },
                     child: Text(
                       "Esqueci minha senha",
                       textAlign: TextAlign.right,
@@ -82,29 +96,26 @@ class _LoginScreenState extends State<LoginScreen> {
                         textColor: Colors.white,
                         color: Theme.of(context).primaryColor,
                         onPressed: () {
-                          if (_formKey.currentState.validate()) {
-
-                          }
+                          if (_formKey.currentState.validate()) {}
                           model.signIn(
-                          email: _emailController.text, 
-                          pass: _passController.text,
-                          onSucess:_onSuccess,
-                          onFail: _onFail);
+                              email: _emailController.text,
+                              pass: _passController.text,
+                              onSucess: _onSuccess,
+                              onFail: _onFail);
                         }))
               ]));
         }));
   }
 
   void _onSuccess() {
-      Navigator.of(context).pop();
+    Navigator.of(context).pop();
   }
 
   void _onFail() {
-     _scaffoldKey.currentState.showSnackBar(
-      SnackBar(content: Text("Falha ao entrar!"),
+    _scaffoldKey.currentState.showSnackBar(SnackBar(
+      content: Text("Falha ao entrar!"),
       backgroundColor: Colors.redAccent,
       duration: Duration(seconds: 2),
-      )
-    );
+    ));
   }
 }
