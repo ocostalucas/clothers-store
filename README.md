@@ -3,8 +3,8 @@
 Online clothing store created with Flutter and Firebase.
 
 <h1 align="center">
-    <img alt="Template" src="./assets/preview-cart.png" width="350px" />
     <img alt="Template" src="./assets/preview-home.png" width="350px" />
+    <img alt="Template" src="./assets/preview-cart.png" width="350px" />
 </h1>
  
 ## :recycle: How to contribute  
